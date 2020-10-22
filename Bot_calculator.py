@@ -2,7 +2,9 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 import Bot_functions
 
-token ='ee7ff2f34187acd155382e733565050f2c924a9b0cb5909d95b3123bc01eeb9d077951913408a42c62a89'
+get_token = open("token.txt", "r")
+token = get_token.readline()
+
 calculator_bot = vk_api.VkApi(token=token)
 id_list = [] # список для хранения id пользователей
 bot_commands = (' "+ - * / ^ ()" ')
