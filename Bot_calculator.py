@@ -6,11 +6,11 @@ get_token = open("token.txt", "r")
 token = get_token.readline()
 
 calculator_bot = vk_api.VkApi(token=token)
-id_list = [] # список для хранения id пользователей
+id_list = []  # список для хранения id пользователей
 bot_commands = (' "+ - * / ^ ()" ')
 
 
-def reply (user_id, write_msg ): # Функция ответа
+def reply(user_id, write_msg):  # Функция ответа
     calculator_bot.method('messages.send', {'user_id': user_id, 'message': write_msg, 'random_id': 0})
 
 
@@ -46,14 +46,14 @@ def answer(text):
     return ans
 
 
-longpoll = VkLongPoll(calculator_bot) # подключение бота к longpoll серверу 
+longpoll = VkLongPoll(calculator_bot)  # подключение бота к longpoll серверу
 while True:
     
     for message in longpoll.listen():
     
         if message.type == VkEventType.MESSAGE_NEW:
     
-            if message.to_me: # сообщение боту
+            if message.to_me:  # сообщение боту
                 
                 # ловим нового пользователя и добавляем id в список
                 if message.user_id not in id_list:
@@ -65,10 +65,10 @@ while True:
                     # вывод в консоль информации от пользователя
                     Bot_functions.information_from_user(message.user_id, message.text)
                 
-                else: # пользователь не новый
+                else:  # пользователь не новый
                     
-                    write_msg = answer(message.text) # вызов функции подсчета для текста сообщения
-                    reply(message.user_id, is_integer(write_msg)) # отправка ответа
+                    write_msg = answer(message.text)  # вызов функции подсчета для текста сообщения
+                    reply(message.user_id, is_integer(write_msg))  # отправка ответа
             else:
                 
-                Bot_functions.information_from_me(write_msg) # вывод в консоль информации от бота
+                Bot_functions.information_from_me(write_msg)  # вывод в консоль информации от бота
