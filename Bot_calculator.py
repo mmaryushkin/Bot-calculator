@@ -17,8 +17,7 @@ def reply(user_id, write_msg):  # Функция ответа
 def is_integer(n):
     """ проверка числа на целочисленность """
 
-    try:       
-        
+    try:
         if n - int(n) == 0: 
             n = int(n)    
         
@@ -26,7 +25,6 @@ def is_integer(n):
             pass    
     
     except ValueError:
-        
         pass
 
     return n
@@ -40,7 +38,6 @@ def answer(text):
         ans = Bot_functions.postfix_eval(text) 
     
     except UnboundLocalError:
-
         ans = "Я вас не понял, введите пример"
 
     return ans
@@ -70,5 +67,4 @@ while True:
                     write_msg = answer(message.text)  # вызов функции подсчета для текста сообщения
                     reply(message.user_id, is_integer(write_msg))  # отправка ответа
             else:
-                
                 Bot_functions.information_from_me(write_msg)  # вывод в консоль информации от бота
